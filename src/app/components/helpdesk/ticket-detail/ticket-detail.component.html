@@ -1,0 +1,139 @@
+<div class="ticket-detail-container" *ngIf="ticket; else emptyState">
+    <div class="ticket-detail">
+      <!-- Header Section -->
+      <div class="detail-header">
+        <div class="status-badges">
+          <span class="status-badge status-{{ ticket.status }}">
+            {{ ticket.status.toUpperCase() }}
+          </span>
+          <span class="priority-badge priority-{{ ticket.priority }}">
+            {{ ticket.priority.toUpperCase() }}
+          </span>
+        </div>
+      </div>
+  
+      <!-- Title -->
+      <h1 class="ticket-title">{{ ticket.title }}</h1>
+  
+      <!-- Description -->
+      <p class="ticket-description">{{ ticket.desc }}</p>
+  
+      <!-- SLA Status Card -->
+      <div class="sla-card" [class.sla-breached]="getSLAStatus() === 'breached'">
+        <div class="sla-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+        </div>
+        <div class="sla-content">
+          <h3 class="sla-title">SLA Status</h3>
+          <p class="sla-status" *ngIf="getSLAStatus() === 'breached'">SLA Breached</p>
+          <p class="sla-status sla-met" *ngIf="getSLAStatus() === 'met'">SLA Met</p>
+          <p class="sla-status sla-risk" *ngIf="getSLAStatus() === 'at_risk'">At Risk</p>
+        </div>
+      </div>
+  
+      <!-- Ticket Info Grid -->
+      <div class="info-grid">
+        <div class="info-item">
+          <svg class="info-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          <div class="info-content">
+            <span class="info-label">Created</span>
+            <span class="info-value">10:00:00 AM</span>
+          </div>
+        </div>
+  
+        <div class="info-item">
+          <svg class="info-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 6v6l4 2"></path>
+          </svg>
+          <div class="info-content">
+            <span class="info-label">Due</span>
+            <span class="info-value">2:00:00 PM</span>
+          </div>
+        </div>
+      </div>
+  
+      <!-- People Section -->
+      <div class="people-section">
+        <div class="person-card">
+          <svg class="person-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <div class="person-info">
+            <span class="person-label">Reporter</span>
+            <span class="person-name">John Doe</span>
+          </div>
+        </div>
+  
+        <div class="person-card">
+          <svg class="person-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+          <div class="person-info">
+            <span class="person-label">Assignee</span>
+            <span class="person-name">{{ ticket.assignee || 'Unassigned' }}</span>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Comments Section -->
+      <div class="comments-section">
+        <h2 class="comments-title">Comments</h2>
+  
+        <div class="comments-list">
+          <div *ngFor="let comment of comments" class="comment-card">
+            <div class="comment-avatar">{{ comment.avatar }}</div>
+            <div class="comment-content">
+              <div class="comment-header">
+                <span class="comment-author">{{ comment.author }}</span>
+                <span class="comment-badge" *ngIf="comment.isInternal">internal</span>
+                <span class="comment-time">{{ comment.timestamp }}</span>
+              </div>
+              <p class="comment-text">{{ comment.content }}</p>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Add Comment Form -->
+        <div class="add-comment">
+          <textarea 
+            class="comment-input"
+            placeholder="Add a comment..."
+            [value]="newComment"
+            (input)="onCommentInput($event)"
+            rows="3"
+          ></textarea>
+          <button class="send-button" (click)="sendComment()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+            Send
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #emptyState>
+    <div class="empty">
+      <div class="empty-icon">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M9 11l3 3L22 4"></path>
+          <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+        </svg>
+      </div>
+      <h3 class="empty-title">No ticket selected</h3>
+      <p class="empty-text">Select a ticket from the list to view its details</p>
+    </div>
+  </ng-template>

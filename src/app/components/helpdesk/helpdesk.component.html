@@ -1,0 +1,65 @@
+<div class="helpdesk-wrapper">
+    <!-- Header with New Ticket Button -->
+    <div class="helpdesk-header">
+        <div class="header-content">
+          <!-- Left: Logo + Text -->
+          <div class="header-left">
+            <div class="logo">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+              </svg>
+            </div>
+            <div class="header-text">
+              <h1>QuickDesk AI</h1>
+              <p>Intelligent Help Desk</p>
+            </div>
+          </div>
+      
+          <!-- Right: Buttons -->
+          <div class="header-buttons">
+            <button class="btn-new-ticket" (click)="openNewTicketModal()">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              New Ticket
+            </button>
+      
+            <button class="btn-chatai" (click)="openChat()">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2z"></path>
+              </svg>
+              Chatbot AI
+            </button>
+          </div>
+        </div>
+      </div>
+      
+    
+    <!-- Main Content -->
+    <div class="helpdesk-container">
+      <!-- Left Panel - Ticket List -->
+      <div class="left-panel">
+        <app-ticket-list></app-ticket-list>
+      </div>
+  
+      <!-- Right Panel - Ticket Detail -->
+      <div class="right-panel">
+        <app-ticket-detail [ticket]="selectedTicket"></app-ticket-detail>
+      </div>
+    </div>
+  
+    <!-- Modal -->
+    <app-new-ticket-modal 
+      *ngIf="showModal"
+      (close)="closeModal()"
+      (createTicket)="onCreateTicket($event)"
+    ></app-new-ticket-modal>
+    <app-chat
+  *ngIf="showChat"
+  (close)="closeChat()">
+</app-chat>
+  </div>

@@ -1,0 +1,63 @@
+<div class="modal-backdrop" (click)="onBackdropClick()"></div>
+
+<div class="modal" (click)="onModalClick($event)">
+  <!-- Close Button -->
+  <button class="close-btn" (click)="close.emit()" type="button">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  </button>
+
+  <h2>Create New Ticket</h2>
+  <p class="modal-subtitle">Submit a new support ticket. We'll get back to you as soon as possible.</p>
+
+  <form (submit)="onSubmit($event)">
+    <div class="form-group">
+      <label for="ticket-title">Title</label>
+      <input 
+        type="text" 
+        id="ticket-title"
+        [value]="title"
+        (input)="onTitleInput($event)"
+        placeholder="Brief description of the issue"
+        required 
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="ticket-description">Description</label>
+      <textarea 
+        id="ticket-description"
+        [value]="description"
+        (input)="onDescriptionInput($event)"
+        rows="4"
+        placeholder="Provide detailed information about the issue"
+        required
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="ticket-priority">Priority</label>
+      <select 
+        id="ticket-priority"
+        [value]="priority"
+        (change)="onPriorityChange($event)"
+      >
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+        <option value="urgent">Urgent</option>
+      </select>
+    </div>
+
+    <div class="actions">
+      <button type="button" class="btn-cancel" (click)="close.emit()">
+        Cancel
+      </button>
+      <button type="submit" class="btn-submit">
+        Create Ticket
+      </button>
+    </div>
+  </form>
+</div>

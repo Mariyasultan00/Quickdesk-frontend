@@ -1,0 +1,12 @@
+<div class="ticket-card" (click)="onSelect()">
+    <div class="ticket-header">
+      <h3>{{ ticket.title }}</h3>
+      <span class="priority" [ngClass]="ticket.priority">{{ ticket.priority | uppercase }}</span>
+    </div>
+    <p>{{ ticket.desc }}</p>
+    <div class="ticket-footer">
+      <span class="status" [ngClass]="ticket.status">{{ ticket.status }}</span>
+      <span class="comments">💬 {{ ticket.comments }}</span>
+    </div>
+  </div>
+  

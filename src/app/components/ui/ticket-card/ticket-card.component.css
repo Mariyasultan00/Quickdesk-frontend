@@ -1,0 +1,79 @@
+.ticket-card {
+    background-color: #3b3b5e; /* dark card */
+    border-radius: 15px;
+    padding: 15px 20px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.3s ease;
+  }
+  
+  .ticket-card:hover {
+    transform: translateY(-2px);
+    background-color: #4a4a7a;
+  }
+  
+  .ticket-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  
+  .ticket-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #fff;
+  }
+  
+  .priority {
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #fff;
+  }
+  
+  /* Priority colors */
+  .priority.low {
+    background-color: #4caf50; /* green */
+  }
+  
+  .priority.medium {
+    background-color: #ff9800; /* orange */
+  }
+  
+  .priority.high {
+    background-color: #f44336; /* red */
+  }
+  
+  .ticket-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+    font-size: 0.85rem;
+    color: #ccc;
+  }
+  
+  /* Status colors */
+  .status.open {
+    color: #4caf50;
+    font-weight: bold;
+  }
+  
+  .status.pending {
+    color: #ff9800;
+    font-weight: bold;
+  }
+  
+  .status.closed {
+    color: #f44336;
+    font-weight: bold;
+  }
+  
+  .comments {
+    display: flex;
+    align-items: center;
+  }
+  

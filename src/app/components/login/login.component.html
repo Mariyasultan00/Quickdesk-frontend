@@ -1,0 +1,78 @@
+<div class="login-container">
+    <div class="login-card">
+      <!-- Logo Section -->
+      <div class="logo-section">
+        <div class="logo">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+        </div>
+        <h1>QuickDesk AI</h1>
+        <p>Intelligent Help Desk</p>
+      </div>
+  
+      <!-- Login Form -->
+      <form (submit)="onSubmit($event)" class="login-form">
+        <h2>Welcome back</h2>
+        <p class="subtitle">Sign in to access your help desk</p>
+  
+        <!-- Error Message -->
+        <div class="error-alert" *ngIf="errorMessage">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+          {{ errorMessage }}
+        </div>
+  
+        <!-- Email Field -->
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input 
+            type="email" 
+            id="email"
+            [value]="email"
+            (input)="onEmailInput($event)"
+            placeholder="admin@mail.com"
+            required
+            autocomplete="email"
+          />
+        </div>
+  
+        <!-- Password Field -->
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input 
+            type="password" 
+            id="password"
+            [value]="password"
+            (input)="onPasswordInput($event)"
+            placeholder="Enter your password"
+            required
+            autocomplete="current-password"
+          />
+        </div>
+  
+        <!-- Submit Button -->
+        <button 
+          type="submit" 
+          class="btn-login"
+          [class.loading]="isLoading"
+          [disabled]="isLoading"
+        >
+          <span *ngIf="!isLoading">Sign In</span>
+          <span *ngIf="isLoading" class="loading-spinner"></span>
+        </button>
+  
+        <!-- Demo Credentials Info -->
+        <div class="demo-info">
+          <p>Demo credentials:</p>
+          <code>admin&#64;mail.com / admin123</code>
+        </div>
+      </form>
+    </div>
+  </div>

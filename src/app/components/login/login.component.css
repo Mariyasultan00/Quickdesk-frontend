@@ -1,0 +1,214 @@
+/* Container */
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 20px;
+  }
+  
+  /* Login Card */
+  .login-card {
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 440px;
+    padding: 48px 40px;
+    animation: slideUp 0.4s ease;
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Logo Section */
+  .logo-section {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .logo {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, #5b6cf0 0%, #4c5ce0 100%);
+    border-radius: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    color: white;
+  }
+  
+  .logo-section h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 4px 0;
+  }
+  
+  .logo-section p {
+    font-size: 14px;
+    color: #64748b;
+    margin: 0;
+  }
+  
+  /* Form */
+  .login-form h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 8px 0;
+  }
+  
+  .subtitle {
+    font-size: 14px;
+    color: #64748b;
+    margin: 0 0 24px 0;
+  }
+  
+  /* Error Alert */
+  .error-alert {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #dc2626;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  
+  .error-alert svg {
+    flex-shrink: 0;
+  }
+  
+  /* Form Group */
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #475569;
+    margin-bottom: 8px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #1e293b;
+    font-family: inherit;
+    transition: all 0.2s;
+    box-sizing: border-box;
+  }
+  
+  input:focus {
+    outline: none;
+    border-color: #5b6cf0;
+    box-shadow: 0 0 0 3px rgba(91, 108, 240, 0.1);
+  }
+  
+  input::placeholder {
+    color: #94a3b8;
+  }
+  
+  /* Submit Button */
+  .btn-login {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #5b6cf0 0%, #4c5ce0 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 8px;
+  }
+  
+  .btn-login:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(91, 108, 240, 0.4);
+  }
+  
+  .btn-login:active:not(:disabled) {
+    transform: translateY(0);
+  }
+  
+  .btn-login:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  
+  /* Loading Spinner */
+  .loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #ffffff;
+    animation: spin 0.6s linear infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  /* Demo Info */
+  .demo-info {
+    margin-top: 24px;
+    padding: 16px;
+    background: #f8fafc;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .demo-info p {
+    font-size: 13px;
+    color: #64748b;
+    margin: 0 0 8px 0;
+    font-weight: 500;
+  }
+  
+  .demo-info code {
+    display: inline-block;
+    background: #e2e8f0;
+    color: #475569;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: 'Courier New', monospace;
+  }
+  
+  /* Responsive */
+  @media (max-width: 480px) {
+    .login-card {
+      padding: 32px 24px;
+    }
+  
+    .logo-section h1 {
+      font-size: 24px;
+    }
+  
+    .login-form h2 {
+      font-size: 20px;
+    }
+  }

@@ -1,0 +1,96 @@
+<div class="ticket-list">
+    <!-- Search Bar -->
+    <div class="search-container">
+      <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"></circle>
+        <path d="m21 21-4.35-4.35"></path>
+      </svg>
+      <input 
+        type="text" 
+        class="search-input"
+        placeholder="Search tickets by title or description..."
+        (input)="onSearch($event)"
+      />
+    </div>
+  
+    <!-- Filter Tabs -->
+    <div class="filters">
+      <button 
+        [class.active]="activeFilter === 'all'"
+        (click)="setFilter('all')"
+      >
+        All
+      </button>
+      <button 
+        [class.active]="activeFilter === 'open'"
+        (click)="setFilter('open')"
+      >
+        open
+      </button>
+      <button 
+        [class.active]="activeFilter === 'in_progress'"
+        (click)="setFilter('in_progress')"
+      >
+        in progress
+      </button>
+      <button 
+        [class.active]="activeFilter === 'resolved'"
+        (click)="setFilter('resolved')"
+      >
+        resolved
+      </button>
+      <button 
+        [class.active]="activeFilter === 'closed'"
+        (click)="setFilter('closed')"
+      >
+        closed
+      </button>
+    </div>
+  
+    <!-- Ticket Cards -->
+    <div class="tickets">
+      <div 
+        *ngFor="let t of filteredTickets" 
+        class="ticket-card"
+        (click)="onSelect(t)"
+      >
+        <!-- Card Header -->
+        <div class="card-header">
+          <h4 class="ticket-title">{{ t.title }}</h4>
+          <span class="priority-badge priority-{{ t.priority }}">
+            {{ getPriorityLabel(t.priority) }}
+          </span>
+        </div>
+  
+        <!-- Card Description -->
+        <p class="ticket-desc">{{ t.desc }}</p>
+  
+        <!-- Card Footer Meta -->
+        <div class="card-footer">
+          <div class="footer-left">
+            <span class="status-badge status-{{ t.status }}">
+              {{ getStatusLabel(t.status) }}
+            </span>
+            <span class="overdue-indicator" *ngIf="t.overdue">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              Overdue
+            </span>
+            <span class="assignee" *ngIf="t.assignee">
+              {{ t.assignee }}
+            </span>
+          </div>
+          <div class="footer-right">
+            <span class="comments">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+              {{ t.comments }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,36 @@
+
+<div class="chat-backdrop" (click)="close.emit()"></div>
+
+<div class="chat-container">
+  <div class="chat-header">
+    <h2>QuickDesk AI Chat</h2>
+  </div>
+
+  <div class="chat-messages" #scrollContainer>
+    <div *ngFor="let msg of chatLog" 
+         [ngClass]="getMessageClass(msg)"
+         class="message">
+      {{ msg.text }}
+    </div>
+
+    <div *ngIf="isLoading" class="message ai-message">
+      AI is thinking...
+    </div>
+  </div>
+
+  <form class="input-container" (ngSubmit)="sendMessage()">
+    <input 
+      [(ngModel)]="message" 
+      name="message"
+      placeholder="Type your message..." 
+      [disabled]="isLoading" />
+    <button style="background: linear-gradient(135deg, #8a93d5 0%, #3747d4 100%);"
+      type="submit"
+      [disabled]="!message.trim() || isLoading">
+      {{ isLoading ? 'Sending...' : 'Send' }}
+    </button>
+  </form>
+
+  <!-- Close button outside input row -->
+  <button class="close-btn" (click)="close.emit()">Close</button>
+</div>

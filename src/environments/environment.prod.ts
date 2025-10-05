@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://unwetted-lynelle-subperitoneal.ngrok-free.dev'  // Update this with your actual backend URL
+  apiUrl: 'https://quickdesk-backend.onrender.com'  // Update this with your actual backend URL
 };
 
 

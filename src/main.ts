@@ -1,9 +1,0 @@
-import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
-import { AppComponent } from './app/app.component';
-import { ChatComponent } from './app/components/chat/chat.component';
-
-bootstrapApplication(AppComponent, appConfig)
-  .catch((err) => console.error(err));
-bootstrapApplication(ChatComponent)
-  .catch(err => console.error(err));
